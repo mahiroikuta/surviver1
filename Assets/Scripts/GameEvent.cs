@@ -6,5 +6,5 @@ using UnityEngine;
 public class GameEvent : MonoBehaviour
 {
     public Action<GameObject, GameObject> bulletHitEnemy;
-    public Action<GameObject, GameObject> bulletHitPlayer;
+    public Action<GameObject> enemyHitPlayer;
 }

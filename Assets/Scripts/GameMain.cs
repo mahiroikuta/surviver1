@@ -15,6 +15,10 @@ public class GameMain : MonoBehaviour
     public PlayerShotManager playerShotManager;
     public AttackHitManager attackHitManager;
     public HpBarManager hpBarManager;
+    public EnemyMoveManager enemyMoveManager;
+    public EnemySponeManager enemySponeManager;
+    public EnemyHitManager enemyHitManager;
+    public StatusManager statusManager;
 
     void Awake()
     {
@@ -26,6 +30,10 @@ public class GameMain : MonoBehaviour
         playerShotManager.setUp(_gameState, _gameEvent);
         attackHitManager.setUp(_gameState, _gameEvent);
         hpBarManager.setUp(_gameState, _gameEvent);
+        enemyMoveManager.setUp(_gameState, _gameEvent);
+        enemySponeManager.setUp(_gameState, _gameEvent);
+        enemyHitManager.setUp(_gameState, _gameEvent);
+        statusManager.setUp(_gameState, _gameEvent);
     }
 
     void Start()
@@ -39,6 +47,10 @@ public class GameMain : MonoBehaviour
         _gameState = playerShotManager.onUpdate();
         _gameState = attackHitManager.onUpdate();
         _gameState = hpBarManager.onUpdate();
+        _gameState = enemyMoveManager.onUpdate();
+        _gameState = enemySponeManager.onUpdate();
+        _gameState = enemyHitManager.onUpdate();
+        _gameState = statusManager.onUpdate();
         if ( Input.GetMouseButtonDown(0) ) playerShotManager.shot();
     }
 }

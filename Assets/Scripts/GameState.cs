@@ -18,6 +18,7 @@ public class GameState
     public GameObject enemy;
     public GameObject enemyBullet;
     public Slider enemyHpBar;
+    public float sponeTime;
 
     [System.NonSerialized]
     public GameStatus gameStatus;

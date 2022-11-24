@@ -20,5 +20,8 @@ public class Status : MonoBehaviour
     public float bulletSpeed;
 
     [SerializeField]
-    public float moveSpeed;
+    public float speedLevel;
+
+    [SerializeField]
+    public int exp;
 }

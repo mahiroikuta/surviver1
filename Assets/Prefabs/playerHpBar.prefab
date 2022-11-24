@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 186301804669003543}
   - component: {fileID: 8731868684512638649}
   m_Layer: 5
-  m_Name: playerHpBar
+  m_Name: PlayerHpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -13,7 +13,7 @@ public class GameRule : MonoBehaviour
         _gameEvent = gameEvent;
 
         _gameEvent.bulletHitEnemy += damageEnemy;
-        // _gameEvent.bulletHitPlayer += damagePlayer;
+        _gameEvent.enemyHitPlayer += damagePlayer;
     }
 
     public void damageEnemy(GameObject playerBullet, GameObject enemy)
@@ -27,19 +27,20 @@ public class GameRule : MonoBehaviour
         {
             _gameState.enemys.Remove(enemy);
             Destroy(enemy.gameObject);
+            playerStatus.exp += 1;
         }
     }
 
-    // public void damagePlayer(GameObject enemyBullet, GameObject player)
-    // {
-    //     Status playerStatus = _gameState.player.GetComponent<Status>();
-    //     Status enemyStatus = enemy.GetComponent<Status>();
-    //     playerStatus.hp = playerStatus.hp - enemyStatus.atk;
-    //     _gameState.enemyBullets.Remove(enemyBullet);
-    //     Destroy(enemyBullet.gameObject);
-    //     if ( playerStatus.hp <= 0 )
-    //     {
-    //         _gameState.gameStatus = GameStatus.GameOver;
-    //     }
-    // }
+    public void damagePlayer(GameObject enemy)
+    {
+        Status pStatus = _gameState.player.GetComponent<Status>();
+        Status eStatus = enemy.GetComponent<Status>();
+        pStatus.hp = pStatus.hp - eStatus.atk;
+        _gameState.enemys.Remove(enemy);
+        Destroy(enemy.gameObject);
+        if ( pStatus.hp <= 0 )
+        {
+            _gameState.gameStatus = GameStatus.GameOver;
+        }
+    }
 }
