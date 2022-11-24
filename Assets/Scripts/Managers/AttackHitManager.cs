@@ -13,10 +13,9 @@ public class AttackHitManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
         playerBulletHit();
-        return _gameState;
     }
 
     public void playerBulletHit()

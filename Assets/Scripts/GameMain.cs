@@ -10,6 +10,7 @@ public class GameMain : MonoBehaviour
     public GameEvent _gameEvent;
     public GameRule _gameRule;
     public GameStatus _gameStatus;
+    public UIManager UImanager;
 
     public PlayerSponeManager playerSponeManager;
     public PlayerShotManager playerShotManager;
@@ -24,7 +25,8 @@ public class GameMain : MonoBehaviour
     {
         _gameState.isShooting = false;
         _gameRule.setUp(_gameState, _gameEvent);
-        _gameState.gameStatus = GameStatus.IsPlaying;
+        _gameState.gameStatus = GameStatus.Title;
+        UImanager.setUp(_gameState, _gameEvent);
 
         playerSponeManager.setUp(_gameState, _gameEvent);
         playerShotManager.setUp(_gameState, _gameEvent);
@@ -44,13 +46,13 @@ public class GameMain : MonoBehaviour
     void Update()
     {
         if ( _gameState.gameStatus != GameStatus.IsPlaying ) return;
-        _gameState = playerShotManager.onUpdate();
-        _gameState = attackHitManager.onUpdate();
-        _gameState = hpBarManager.onUpdate();
-        _gameState = enemyMoveManager.onUpdate();
-        _gameState = enemySponeManager.onUpdate();
-        _gameState = enemyHitManager.onUpdate();
-        _gameState = statusManager.onUpdate();
+        playerShotManager.onUpdate();
+        attackHitManager.onUpdate();
+        hpBarManager.onUpdate();
+        enemyMoveManager.onUpdate();
+        enemySponeManager.onUpdate();
+        enemyHitManager.onUpdate();
+        statusManager.onUpdate();
         if ( Input.GetMouseButtonDown(0) ) playerShotManager.shot();
     }
 }

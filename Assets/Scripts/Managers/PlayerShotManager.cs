@@ -14,9 +14,9 @@ public class PlayerShotManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
-        return _gameState;
+
     }
 
     public void shot()

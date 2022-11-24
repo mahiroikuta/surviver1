@@ -16,9 +16,9 @@ public class PlayerSponeManager : MonoBehaviour
         playerSpone();
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
-        return _gameState;
+
     }
 
     public void playerSpone()

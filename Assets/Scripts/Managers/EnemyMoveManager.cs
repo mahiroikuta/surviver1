@@ -13,10 +13,9 @@ public class EnemyMoveManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
         moving();
-        return _gameState;
     }
 
     public void moving()

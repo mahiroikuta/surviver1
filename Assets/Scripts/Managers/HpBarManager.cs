@@ -16,21 +16,34 @@ public class HpBarManager : MonoBehaviour
         playerStatus.hp = playerStatus.maxHp;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
-        // hpBar();
-        return _gameState;
+        playerHpBar();
+        enemyHpBar();
     }
 
-    public void hpBar()
+    public void playerHpBar()
     {
         Status playerStatus = _gameState.player.GetComponent<Status>();
-        Slider playerHpBar = _gameState.playerHpBar;
+        HpBar playerHpBar = _gameState.player.GetComponent<HpBar>();
         int nowPlayerHp = playerStatus.hp;
         int maxPlayerHp = playerStatus.maxHp;
-        Debug.Log(nowPlayerHp);
-        Debug.Log(maxPlayerHp);
-        playerHpBar.value = (float)nowPlayerHp / (float)maxPlayerHp;
-        Debug.Log(playerHpBar.value);
+        playerHpBar.hpBar.value = (float)nowPlayerHp / (float)maxPlayerHp;
+    }
+
+    public void enemyHpBar()
+    {
+        if ( _gameState.enemys.Count == 0 ) return;
+        int count = _gameState.enemys.Count;
+        for ( int i=count-1 ; i>=0 ; i-- )
+        {
+            count = _gameState.enemys.Count;
+            GameObject enemy = _gameState.enemys[i];
+            Status enemyStatus = enemy.GetComponent<Status>();
+            HpBar enemyHpBar = enemy.GetComponent<HpBar>();
+            int nowEnemyHp = enemyStatus.hp;
+            int maxEnemyHp = enemyStatus.maxHp;
+            enemyHpBar.hpBar.value = (float)nowEnemyHp / (float)maxEnemyHp;
+        }
     }
 }

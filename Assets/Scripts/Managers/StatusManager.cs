@@ -13,10 +13,9 @@ public class StatusManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
         checkExp();
-        return _gameState;
     }
 
     public void checkExp()
@@ -24,6 +23,7 @@ public class StatusManager : MonoBehaviour
         Status status = _gameState.player.GetComponent<Status>();
         if ( status.exp == status.level*3 )
         {
+            _gameState.gameStatus = GameStatus.ItemChoosing;
             status.level += 1;
             status.maxHp += 50;
             status.hp = status.maxHp;

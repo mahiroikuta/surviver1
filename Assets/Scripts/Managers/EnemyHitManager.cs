@@ -13,10 +13,9 @@ public class EnemyHitManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
         enemyHitPlayer();
-        return _gameState;
     }
 
     public void enemyHitPlayer()
@@ -28,12 +27,12 @@ public class EnemyHitManager : MonoBehaviour
             count = _gameState.enemys.Count;
             GameObject enemy = _gameState.enemys[i];
             RaycastHit hit;
-            Rigidbody rig = enemy.GetComponent<Rigidbody>();
-            if ( Physics.SphereCast(enemy.transform.position, 1.0f, rig.velocity, out hit, 0.3f, LayerMask.GetMask("Default")) )
+            Vector3 direction = _gameState.player.transform.position - enemy.transform.position;
+            if ( Physics.SphereCast(enemy.transform.position, 1.0f, direction, out hit, 0.3f, LayerMask.GetMask("Player Object")) )
             {
                 playerDamage(enemy, hit);
             }
-            Debug.DrawRay(enemy.transform.position, rig.velocity, Color.red);
+            Debug.DrawRay(enemy.transform.position, direction, Color.red);
         }
     }
 

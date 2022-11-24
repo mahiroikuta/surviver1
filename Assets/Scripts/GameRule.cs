@@ -14,6 +14,7 @@ public class GameRule : MonoBehaviour
 
         _gameEvent.bulletHitEnemy += damageEnemy;
         _gameEvent.enemyHitPlayer += damagePlayer;
+        _gameEvent.useItem += useItem;
     }
 
     public void damageEnemy(GameObject playerBullet, GameObject enemy)
@@ -41,6 +42,25 @@ public class GameRule : MonoBehaviour
         if ( pStatus.hp <= 0 )
         {
             _gameState.gameStatus = GameStatus.GameOver;
+        }
+    }
+
+    public void useItem(ItemType itemType)
+    {
+        Status playerStatus = _gameState.player.GetComponent<Status>();
+        switch ( itemType )
+        {
+            case ItemType.Split:
+                playerStatus.splitLevel += 1;
+                break;
+            case ItemType.SpeedUp:
+                playerStatus.bulletSpeed += 5;
+                playerStatus.speedLevel += 1;
+                break;
+            case ItemType.Heal:
+                playerStatus.hp += playerStatus.maxHp/3;
+                if ( playerStatus.hp > playerStatus.maxHp ) playerStatus.hp = playerStatus.maxHp;
+                break;
         }
     }
 }

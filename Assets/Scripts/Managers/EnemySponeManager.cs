@@ -13,10 +13,9 @@ public class EnemySponeManager : MonoBehaviour
         _gameEvent = gameEvent;
     }
 
-    public GameState onUpdate()
+    public void onUpdate()
     {
         sponeEnemy();
-        return _gameState;
     }
 
     public void sponeEnemy()
@@ -67,7 +66,7 @@ public class EnemySponeManager : MonoBehaviour
         switch ( eStatus.level )
         {
             case 1:
-                eStatus.maxHp = 15;
+                eStatus.maxHp = 10;
                 eStatus.hp = eStatus.maxHp;
                 eStatus.atk = 5;
                 eStatus.bulletSpeed = 1;

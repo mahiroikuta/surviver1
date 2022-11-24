@@ -23,5 +23,8 @@ public class Status : MonoBehaviour
     public float speedLevel;
 
     [SerializeField]
+    public int splitLevel;
+
+    [SerializeField]
     public int exp;
 }
