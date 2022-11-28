@@ -62,7 +62,7 @@ public class EnemySponeManager : MonoBehaviour
 
     void enemyStatus(Status eStatus, Status pStatus)
     {
-        eStatus.level = Random.Range(1,pStatus.level+1);
+        eStatus.level = Random.Range(1,System.Math.Min(pStatus.level, 3)+1);
         switch ( eStatus.level )
         {
             case 1:

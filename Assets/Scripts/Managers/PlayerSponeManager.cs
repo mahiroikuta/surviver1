@@ -25,9 +25,5 @@ public class PlayerSponeManager : MonoBehaviour
     {
         GameObject player = GameObject.Instantiate(_gameState.player, _gameState.player.transform.position, Quaternion.identity) as GameObject;
         _gameState.player = player;
-        // GameObject playerHpCanvas = player.transform.Find("PlayerHpCanvas").gameObject;
-        // Slider playerHpBar = playerHpCanvas.GetComponent<Slider>();
-        // Debug.Log(playerHpCanvas);
-        // _gameState.playerHpBar = playerHpBar;
     }
 }

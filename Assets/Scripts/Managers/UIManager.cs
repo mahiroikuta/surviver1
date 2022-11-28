@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     public void onUpdate()
     {
         if ( _gameState.gameStatus == GameStatus.ItemChoosing ) _gameState.levelUpPanel.SetActive(true);
-        else if ( _gameState.gameStatus == GameStatus.Result ) _gameState.resultPanel.SetActive(true);
+        else if ( _gameState.gameStatus == GameStatus.Retry ) _gameState.startPanel.SetActive(true);
         else if ( _gameState.gameStatus == GameStatus.Result ) _gameState.resultPanel.SetActive(true);
     }
 

@@ -33,4 +33,19 @@ public class StatusManager : MonoBehaviour
             status.exp = 0;
         }
     }
+
+    public void playerInitialize()
+    {
+        Status status = _gameState.player.GetComponent<Status>();
+        HpBar playerHpBar = _gameState.player.GetComponent<HpBar>();
+        status.level = 1;
+        status.maxHp = 50;
+        status.hp = 50;
+        status.atk = 5;
+        status.bulletSpeed = 5;
+        status.speedLevel = 1;
+        status.splitLevel = 0;
+        status.exp = 0;
+        playerHpBar.hpBar.value = 1;
+    }
 }

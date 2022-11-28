@@ -17,6 +17,7 @@ public class RetryButtonManager : MonoBehaviour
     void retryGame()
     {
         _gameState.gameStatus = GameStatus.Retry;
+        _gameEvent.retry?.Invoke();
         _gameState.resultPanel.SetActive(false);
     }
 }

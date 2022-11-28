@@ -69,12 +69,12 @@ public class GameRule : MonoBehaviour
 
     public void retry()
     {
-        Destroy(_gameState.player.gameObject);
         int enemyCount = _gameState.enemys.Count;
         for ( int i=enemyCount-1 ; i>=0 ; i-- )
         {
             enemyCount = _gameState.enemys.Count;
             GameObject enemy = _gameState.enemys[i];
+            _gameState.enemys.Remove(enemy);
             Destroy(enemy.gameObject);
         }
         int bulletCount = _gameState.playerBullets.Count;
@@ -82,6 +82,7 @@ public class GameRule : MonoBehaviour
         {
             bulletCount = _gameState.playerBullets.Count;
             GameObject playerBullet = _gameState.playerBullets[i];
+            _gameState.playerBullets.Remove(playerBullet);
             Destroy(playerBullet.gameObject);
         }
     }

@@ -29,19 +29,24 @@ public class GameMain : MonoBehaviour
 
     void Awake()
     {
-        _gameState.isShooting = false;
         _gameRule.setUp(_gameState, _gameEvent);
-        _gameState.gameStatus = GameStatus.Title;
-        UIManager.setUp(_gameState, _gameEvent);
 
         playerSponeManager.setUp(_gameState, _gameEvent);
+    }
+
+    void Start()
+    {
+        _gameState.isShooting = false;
+        _gameState.gameStatus = GameStatus.Title;
+        statusManager.setUp(_gameState, _gameEvent);
+        UIManager.setUp(_gameState, _gameEvent);
+
         playerShotManager.setUp(_gameState, _gameEvent);
         attackHitManager.setUp(_gameState, _gameEvent);
         hpBarManager.setUp(_gameState, _gameEvent);
         enemyMoveManager.setUp(_gameState, _gameEvent);
         enemySponeManager.setUp(_gameState, _gameEvent);
         enemyHitManager.setUp(_gameState, _gameEvent);
-        statusManager.setUp(_gameState, _gameEvent);
 
         startButtonManager.setUp(_gameState, _gameEvent);
         retryButtonManager.setUp(_gameState, _gameEvent);
@@ -50,21 +55,16 @@ public class GameMain : MonoBehaviour
         healButtonManager.setUp(_gameState, _gameEvent);
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
+        if ( _gameState.gameStatus == GameStatus.Retry ) 
+        {
+            statusManager.playerInitialize();
+            Start();
+        }
         UIManager.onUpdate();
         attackHitManager.onUpdate();
         enemyHitManager.onUpdate();
-        if ( _gameState.gameStatus == GameStatus.Retry ) 
-        {
-            Awake();
-            _gameState.gameStatus = GameStatus.IsPlaying;
-        }
         if ( _gameState.gameStatus != GameStatus.IsPlaying ) return;
         playerShotManager.onUpdate();
         hpBarManager.onUpdate();
