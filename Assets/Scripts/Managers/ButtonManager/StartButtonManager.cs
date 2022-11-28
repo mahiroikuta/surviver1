@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonManager : MonoBehaviour
+public class StartButtonManager : MonoBehaviour
 {
-    public GameObject startButton;
-    public GameObject healItem;
-    public GameObject speedUpItem;
-    public GameObject splitItem;
-    Button btn;
-
     GameState _gameState;
     GameEvent _gameEvent;
 
@@ -18,11 +12,12 @@ public class ButtonManager : MonoBehaviour
     {
         _gameState = gameState;
         _gameEvent = gameEvent;
-        // startButton.onClick.AddListener(_gameEvent.)
+        _gameState.startButton.onClick.AddListener(startGame);
     }
 
-    public void onUpdate()
+    void startGame()
     {
-        
-    } 
+        _gameState.gameStatus = GameStatus.IsPlaying;
+        _gameState.startPanel.SetActive(false);
+    }
 }

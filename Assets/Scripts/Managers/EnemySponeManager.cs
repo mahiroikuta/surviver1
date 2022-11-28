@@ -21,7 +21,7 @@ public class EnemySponeManager : MonoBehaviour
     public void sponeEnemy()
     {
         _gameState.sponeTime += Time.deltaTime;
-        if ( _gameState.sponeTime < 3 ) return;
+        if ( _gameState.sponeTime < 2 ) return;
         Vector3 sponePos = sponePosition();
         GameObject enemy = GameObject.Instantiate(_gameState.enemy, sponePos, Quaternion.identity) as GameObject;
         Status eStatus = enemy.GetComponent<Status>();
@@ -62,7 +62,7 @@ public class EnemySponeManager : MonoBehaviour
 
     void enemyStatus(Status eStatus, Status pStatus)
     {
-        eStatus.level = Random.Range(1,pStatus.level);
+        eStatus.level = Random.Range(1,pStatus.level+1);
         switch ( eStatus.level )
         {
             case 1:

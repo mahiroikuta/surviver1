@@ -26,9 +26,9 @@ public class StatusManager : MonoBehaviour
             _gameState.gameStatus = GameStatus.ItemChoosing;
             status.level += 1;
             status.maxHp += 50;
-            status.hp = status.maxHp;
+            status.hp += 50;
             status.atk += 5;
-            status.bulletSpeed += 5;
+            status.bulletSpeed += 2;
             status.speedLevel += 1;
             status.exp = 0;
         }

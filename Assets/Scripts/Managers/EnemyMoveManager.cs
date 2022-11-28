@@ -27,7 +27,7 @@ public class EnemyMoveManager : MonoBehaviour
             count = _gameState.enemys.Count;
             GameObject enemy = _gameState.enemys[i];
             Status enemyStatus = enemy.GetComponent<Status>();
-            float speed = enemyStatus.speedLevel/500;
+            float speed = enemyStatus.speedLevel/400;
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, _gameState.player.transform.position, speed);
         }
     }

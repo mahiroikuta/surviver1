@@ -15,6 +15,7 @@ public class GameRule : MonoBehaviour
         _gameEvent.bulletHitEnemy += damageEnemy;
         _gameEvent.enemyHitPlayer += damagePlayer;
         _gameEvent.useItem += useItem;
+        _gameEvent.retry += retry;
     }
 
     public void damageEnemy(GameObject playerBullet, GameObject enemy)
@@ -41,7 +42,7 @@ public class GameRule : MonoBehaviour
         Destroy(enemy.gameObject);
         if ( pStatus.hp <= 0 )
         {
-            _gameState.gameStatus = GameStatus.GameOver;
+            _gameState.gameStatus = GameStatus.Result;
         }
     }
 
@@ -61,6 +62,27 @@ public class GameRule : MonoBehaviour
                 playerStatus.hp += playerStatus.maxHp/3;
                 if ( playerStatus.hp > playerStatus.maxHp ) playerStatus.hp = playerStatus.maxHp;
                 break;
+        }
+        _gameState.levelUpPanel.SetActive(false);
+        _gameState.gameStatus = GameStatus.IsPlaying;
+    }
+
+    public void retry()
+    {
+        Destroy(_gameState.player.gameObject);
+        int enemyCount = _gameState.enemys.Count;
+        for ( int i=enemyCount-1 ; i>=0 ; i-- )
+        {
+            enemyCount = _gameState.enemys.Count;
+            GameObject enemy = _gameState.enemys[i];
+            Destroy(enemy.gameObject);
+        }
+        int bulletCount = _gameState.playerBullets.Count;
+        for ( int i=bulletCount-1 ; i>=0 ; i-- )
+        {
+            bulletCount = _gameState.playerBullets.Count;
+            GameObject playerBullet = _gameState.playerBullets[i];
+            Destroy(playerBullet.gameObject);
         }
     }
 }

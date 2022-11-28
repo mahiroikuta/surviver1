@@ -16,7 +16,7 @@ public class PlayerShotManager : MonoBehaviour
 
     public void onUpdate()
     {
-
+        if ( Input.GetMouseButtonDown(0) ) shot();
     }
 
     public void shot()
@@ -30,11 +30,15 @@ public class PlayerShotManager : MonoBehaviour
 
     IEnumerator shotDelay(Vector3 shotForward)
     {
-        GameObject playerBullet = GameObject.Instantiate(_gameState.playerBullet, _gameState.player.transform.position, Quaternion.identity) as GameObject;
-        _gameState.playerBullets.Add(playerBullet);
-        Rigidbody rig = playerBullet.GetComponent<Rigidbody>();
         Status status = _gameState.player.GetComponent<Status>();
-        rig.velocity = shotForward * status.bulletSpeed;
+        for ( int i=0 ; i<=status.splitLevel ; i++)
+        {
+            GameObject playerBullet = GameObject.Instantiate(_gameState.playerBullet, _gameState.player.transform.position, Quaternion.identity) as GameObject;
+            _gameState.playerBullets.Add(playerBullet);
+            Rigidbody rig = playerBullet.GetComponent<Rigidbody>();
+            rig.velocity = shotForward * status.bulletSpeed;
+            yield return new WaitForSeconds(0.2f);
+        }
         yield return new WaitForSeconds(1f/(float)status.level);
         _gameState.isShooting = false;
     }

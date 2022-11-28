@@ -10,7 +10,7 @@ public class GameMain : MonoBehaviour
     public GameEvent _gameEvent;
     public GameRule _gameRule;
     public GameStatus _gameStatus;
-    public UIManager UImanager;
+    public UIManager UIManager;
 
     public PlayerSponeManager playerSponeManager;
     public PlayerShotManager playerShotManager;
@@ -21,12 +21,18 @@ public class GameMain : MonoBehaviour
     public EnemyHitManager enemyHitManager;
     public StatusManager statusManager;
 
+    public StartButtonManager startButtonManager;
+    public RetryButtonManager retryButtonManager;
+    public SplitButtonManager splitButtonManager;
+    public SpeedUpButtonManager speedUpButtonManager;
+    public HealButtonManager healButtonManager;
+
     void Awake()
     {
         _gameState.isShooting = false;
         _gameRule.setUp(_gameState, _gameEvent);
         _gameState.gameStatus = GameStatus.Title;
-        UImanager.setUp(_gameState, _gameEvent);
+        UIManager.setUp(_gameState, _gameEvent);
 
         playerSponeManager.setUp(_gameState, _gameEvent);
         playerShotManager.setUp(_gameState, _gameEvent);
@@ -36,6 +42,12 @@ public class GameMain : MonoBehaviour
         enemySponeManager.setUp(_gameState, _gameEvent);
         enemyHitManager.setUp(_gameState, _gameEvent);
         statusManager.setUp(_gameState, _gameEvent);
+
+        startButtonManager.setUp(_gameState, _gameEvent);
+        retryButtonManager.setUp(_gameState, _gameEvent);
+        splitButtonManager.setUp(_gameState, _gameEvent);
+        speedUpButtonManager.setUp(_gameState, _gameEvent);
+        healButtonManager.setUp(_gameState, _gameEvent);
     }
 
     void Start()
@@ -45,13 +57,19 @@ public class GameMain : MonoBehaviour
 
     void Update()
     {
+        UIManager.onUpdate();
+        attackHitManager.onUpdate();
+        enemyHitManager.onUpdate();
+        if ( _gameState.gameStatus == GameStatus.Retry ) 
+        {
+            Awake();
+            _gameState.gameStatus = GameStatus.IsPlaying;
+        }
         if ( _gameState.gameStatus != GameStatus.IsPlaying ) return;
         playerShotManager.onUpdate();
-        attackHitManager.onUpdate();
         hpBarManager.onUpdate();
         enemyMoveManager.onUpdate();
         enemySponeManager.onUpdate();
-        enemyHitManager.onUpdate();
         statusManager.onUpdate();
         if ( Input.GetMouseButtonDown(0) ) playerShotManager.shot();
     }

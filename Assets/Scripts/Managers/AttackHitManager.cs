@@ -22,17 +22,18 @@ public class AttackHitManager : MonoBehaviour
     {
         if ( _gameState.playerBullets.Count == 0 ) return;
         int count = _gameState.playerBullets.Count;
+        Status pStatus = _gameState.player.GetComponent<Status>();
         for ( int i=count-1 ; i>=0 ; i-- )
         {
             count = _gameState.playerBullets.Count;
             GameObject playerBullet = _gameState.playerBullets[i];
             RaycastHit hit;
-            Rigidbody rig = playerBullet.GetComponent<Rigidbody>();
-            if ( Physics.SphereCast(playerBullet.transform.position, 1.0f, rig.velocity, out hit, 0.3f, LayerMask.GetMask("Default")) )
+            Vector3 direction = playerBullet.transform.position - _gameState.player.transform.position;
+            if ( Physics.SphereCast(playerBullet.transform.position, 0.5f, direction, out hit, 0.75f, LayerMask.GetMask("Default")) )
             {
                 bulletHitEnemy(playerBullet, hit);
             }
-            Debug.DrawRay(playerBullet.transform.position, rig.velocity, Color.red);
+            Debug.DrawRay(playerBullet.transform.position, direction, Color.red);
         }
     }
 

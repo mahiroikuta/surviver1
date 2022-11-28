@@ -8,7 +8,8 @@ public enum GameStatus
     Title,
     IsPlaying,
     ItemChoosing,
-    GameOver,
+    Result,
+    Retry,
 }
 
 [System.Serializable]
@@ -30,6 +31,11 @@ public class GameState
     public GameObject startPanel;
     public GameObject levelUpPanel;
     public GameObject resultPanel;
+    public Button startButton;
+    public Button splitButton;
+    public Button speedUpButton;
+    public Button healButton;
+    public Button retryButton;
 
     [System.NonSerialized]
     public GameStatus gameStatus;
